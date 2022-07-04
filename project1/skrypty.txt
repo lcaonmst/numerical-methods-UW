@@ -1,0 +1,27 @@
+function v = find_house_m(t)
+	v = t;
+	v(1) += v(1) / abs(v(1)) * sqrt(dot(v, v));
+endfunction
+
+function P = fast_house_mul(v, A)
+	P = A - (2 / dot(v, v)) * (v * (v' * A));
+endfunction
+
+function P = fast_house_mul_t(A, v)
+	P = A - (2 / dot(v, v)) * ((A * v) * v');
+endfunction
+
+function A = householder_m(A)
+	v = find_house_m(A([2:rows(A)], 1));
+	A([2:rows(A)], 1) = fast_house_mul(v, A([2:rows(A)], 1));
+	A([2:rows(A)], [2:rows(A)]) = fast_house_mul(v, A([2:rows(A)], [2:rows(A)]));
+	A(1, [2:rows(A)]) = fast_house_mul_t(A(1, [2:rows(A)]), v);
+	A([2:rows(A)], [2:rows(A)]) = fast_house_mul_t(A([2:rows(A)], [2:rows(A)]), v);
+endfunction
+
+function A = hessenberg_m(A)
+	if (rows(A) > 2) 
+		A = householder_m(A);
+		A([2:rows(A)], [2:rows(A)]) = hessenberg_m(A([2:rows(A)], [2:rows(A)]));
+	endif
+endfunction

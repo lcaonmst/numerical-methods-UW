@@ -1,0 +1,7 @@
+Metody Numeryczne
+Projekt nr 1
+Autor: Kamil Zwierzchowski
+Indeks: kz418510
+
+Obie implementacje metody QR poradziły sobie z pierwszą macierzą z takimi samymi wynikami (poza zmienioną kolejnością). Czasowo jednak metoda z przesunięciem okazała się być szybsza około 4-5 razy. Natomiast dla drugiej macierzy żadnej z nich nie udało się sprowadzić jej do postaci trójkątnej, jako że dwie wartości własne były zespolone. Macierz wynikowa miała dodatkową jedną niezerową wartość poza górny trójkąt, której nie sposób jest się pozbyć.
+Dodatkowo, metoda ze zwykłym przesunięciem o pewną wartość z diagonali nie działała dla macierzy [0, 1; 1, 0]. Z tego powodu do pierwszego przesunięcia zawsze dodaję stałą, aby zapobiec takiemu działaniu. Jest to pewne prowizoryczne rozwiązanie, i gdyby próbować doszlifować ten algorytm, możnaby losować jakąś małą stałą co n rozkładów, aby zminimalizować szansę utknięcia w martwym punkcie.

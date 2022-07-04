@@ -1,0 +1,10 @@
+Autor: Kamil Zwierzchowski
+Indeks: kz418510
+
+Metody numeryczne: Projekt nr 2
+
+Implementacja znajdywania najlepszego przybliżenia funkcji względem iloczynu skalarnego opiera się na LZNK. Jako że w praktyce ograniczamy się tylko do skończenie wielu punktów, mając pewną bazę ortogonalną Q (gdzie Q_{i, j} to wartość wielomianu j-tego z punkcie i-tym), potrzebujemy zminimalizować normę wektora y - Qx, gdzie y_i = f(x_i). x będzie wtedy wektorem skalarów, które wymnożą każdy wielomian. Jako że macierz Q jest ortogonalna, minimalizacja ta wymaga O(nm) czasu, wynikające z mnożenia y przez transpozycję Q. Potem pozostaje rozwiązać układ z pewną macierzą diagonalną, co jest zadaniem łatwym. 
+
+Okazuje się, że przybliżanie węzłami Czebyszewa daje większy odchył normy niż węzłami jednostajnymi. Choć pozornie może się to wydawać efekt negatywny, być może w ostatecznym rozrachunku te pierwsze w ogólności lepiej przybliżą funkcję.
+
+Przykład użycia: test_interpolation(@sin, -1, 1, 10 5). Funkcja wypisuje po drodze kwadrat normy błędu.
